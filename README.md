@@ -1,10 +1,8 @@
-# 100 System Design Bottleneck Drills
+# 100 System Design Architecture Drills
 
-A curated set of 100 short system design problems. Each one asks a single, focused question:
+A curated set of 100 short system design problems. Each one is a prompt to design the **end-to-end architecture** for a real system at scale.
 
-> **What's the bottleneck?**
-
-No multi-page architecture diagrams. No "design Twitter end-to-end." Just: given a system at this scale, where does it choke first, why, and what's the cheapest mitigation.
+Given a system and its scale numbers: sketch the components, the data stores, the queues, the read and write paths, and the trade-offs. Then go a level deeper — where does it break first, and how would you evolve it as load grows?
 
 ## Format
 
@@ -16,18 +14,19 @@ Every file (`Q01.md` … `Q100.md`) is structured the same way:
 {1–2 line problem statement with realistic scale numbers.}
 ```
 
-That's it. For each one, ask yourself: **what's the bottleneck?**
+That's it. The scale numbers are the constraint — let them drive the design.
 
 ## How to use
 
-1. Pick a question (random or in order).
-2. Time-box yourself to 5–10 minutes.
-3. Write three things:
-   - **Where does this break first?** (which component saturates)
-   - **Why?** (math the QPS / storage / latency / concurrency)
-   - **The minimum-cost mitigation.** (the cheapest change that gets you past it)
+1. Pick a problem (random or in order).
+2. Time-box yourself to 15–30 minutes.
+3. Work through the architecture:
+   - **High-level design** — components, data stores, queues, the critical read/write/dispatch path.
+   - **Scale the numbers** — math out the QPS, storage, latency, concurrency. Let the math force the design decisions.
+   - **Bottlenecks** — name the component that saturates first, the failure mode, and the fix.
+   - **Evolve it** — what breaks at 10× the load, and what you'd change.
 
-If your instinct is "shard the database," stop and ask whether the database is actually the bottleneck. Most of the time it isn't.
+Don't reach for Redis / sharding / a CDN by reflex. Start simple, and let the scale numbers justify each upgrade.
 
 ## Topics covered
 
@@ -44,11 +43,9 @@ If your instinct is "shard the database," stop and ask whether the database is a
 - Multi-region replication, disaster recovery, backup
 - Insurance claims, document collaboration, code hosting
 
-## Why "bottleneck" not "architecture"
+## How to get the most out of these
 
-Most system design practice rewards drawing impressive diagrams. Real production work rewards correctly identifying the **one thing that's about to fall over** and the cheapest fix.
-
-A 10-minute "where does it break" answer demonstrates more practical engineering than a 60-minute "here's the entire architecture" answer.
+Design the whole architecture, but don't stop at the happy-path diagram. The signal is in the depth: which component saturates first, why that failure mode happens, and the cheapest change that gets you past it. A design that names its own bottlenecks and shows how it evolves under 10× load demonstrates far more than a static box-and-arrow diagram.
 
 ## License
 

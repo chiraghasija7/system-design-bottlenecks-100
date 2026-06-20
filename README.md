@@ -14,11 +14,9 @@ Every file (`Q01.md` … `Q100.md`) is structured the same way:
 # Q{N}. {Problem Title}
 
 {1–2 line problem statement with realistic scale numbers.}
-
-**What's the bottleneck?**
 ```
 
-That's it. The space below the prompt is yours to fill in.
+That's it. For each one, ask yourself: **what's the bottleneck?**
 
 ## How to use
 
